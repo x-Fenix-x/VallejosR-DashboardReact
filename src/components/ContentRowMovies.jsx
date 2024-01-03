@@ -1,66 +1,41 @@
+import { ContentRowItem } from './ContentRowItem';
+
 export const ContentRowMovies = () => {
+    const items = [
+        {
+            id: crypto.randomUUID(),
+            color: 'primary',
+            title: 'Movies in Data Base',
+            value: 21,
+            icon: 'fa-film',
+        },
+        {
+            id: crypto.randomUUID(),
+            color: 'success',
+            title: 'Total awards',
+            value: 79,
+            icon: 'fa-award',
+        },
+        {
+            id: crypto.randomUUID(),
+            color: 'warning',
+            title: 'Actor quantity',
+            value: 49,
+            icon: 'fa-user',
+        },
+    ];
+
     return (
-        <div class='row'>
-            <div class='col-md-4 mb-4'>
-                <div class='card border-left-primary shadow h-100 py-2'>
-                    <div class='card-body'>
-                        <div class='row no-gutters align-items-center'>
-                            <div class='col mr-2'>
-                                <div class='text-xs font-weight-bold text-primary text-uppercase mb-1'>
-                                    Movies in Data Base
-                                </div>
-                                <div class='h5 mb-0 font-weight-bold text-gray-800'>
-                                    21
-                                </div>
-                            </div>
-                            <div class='col-auto'>
-                                <i class='fas fa-film fa-2x text-gray-300'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class='col-md-4 mb-4'>
-                <div class='card border-left-success shadow h-100 py-2'>
-                    <div class='card-body'>
-                        <div class='row no-gutters align-items-center'>
-                            <div class='col mr-2'>
-                                <div class='text-xs font-weight-bold text-success text-uppercase mb-1'>
-                                    {' '}
-                                    Total awards
-                                </div>
-                                <div class='h5 mb-0 font-weight-bold text-gray-800'>
-                                    79
-                                </div>
-                            </div>
-                            <div class='col-auto'>
-                                <i class='fas fa-award fa-2x text-gray-300'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class='col-md-4 mb-4'>
-                <div class='card border-left-warning shadow h-100 py-2'>
-                    <div class='card-body'>
-                        <div class='row no-gutters align-items-center'>
-                            <div class='col mr-2'>
-                                <div class='text-xs font-weight-bold text-warning text-uppercase mb-1'>
-                                    Actors quantity
-                                </div>
-                                <div class='h5 mb-0 font-weight-bold text-gray-800'>
-                                    49
-                                </div>
-                            </div>
-                            <div class='col-auto'>
-                                <i class='fas fa-user fa-2x text-gray-300'></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div className='row'>
+            {items.map(({id, title, value, color, icon}) => (
+                <ContentRowItem
+                    key={id}
+                    title={title}
+                    value={value}
+                    color={color}
+                    icon={icon}
+                />
+            ))}
         </div>
     );
 };

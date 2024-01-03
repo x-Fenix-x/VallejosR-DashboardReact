@@ -1,52 +1,56 @@
 export const TopBar = () => {
     return (
-        <nav class='navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow'>
+        <nav className='navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow'>
             <button
                 id='sidebarToggleTop'
-                class='btn btn-link d-md-none rounded-circle mr-3'
+                className='btn btn-link d-md-none rounded-circle mr-3'
             >
-                <i class='fa fa-bars'></i>
+                <i className='fa fa-bars'></i>
             </button>
 
-            <ul class='navbar-nav ml-auto'>
-                <li class='nav-item dropdown no-arrow mx-1'>
+            <ul className='navbar-nav ml-auto'>
+                <li className='nav-item dropdown no-arrow mx-1'>
                     <a
-                        class='nav-link dropdown-toggle'
+                        className='nav-link dropdown-toggle'
                         href='/'
                         id='alertsDropdown'
                     >
-                        <i class='fas fa-bell fa-fw'></i>
+                        <i className='fas fa-bell fa-fw'></i>
 
-                        <span class='badge badge-danger badge-counter'>3+</span>
+                        <span className='badge badge-danger badge-counter'>
+                            3+
+                        </span>
                     </a>
                 </li>
 
-                <li class='nav-item dropdown no-arrow mx-1'>
+                <li className='nav-item dropdown no-arrow mx-1'>
                     <a
-                        class='nav-link dropdown-toggle'
+                        className='nav-link dropdown-toggle'
                         href='/'
                         id='messagesDropdown'
                     >
-                        <i class='fas fa-envelope fa-fw'></i>
+                        <i className='fas fa-envelope fa-fw'></i>
 
-                        <span class='badge badge-danger badge-counter'>7</span>
+                        <span className='badge badge-danger badge-counter'>
+                            7
+                        </span>
                     </a>
                 </li>
 
-                <div class='topbar-divider d-none d-sm-block'></div>
+                <div className='topbar-divider d-none d-sm-block'></div>
 
-                <li class='nav-item dropdown no-arrow'>
+                <li className='nav-item dropdown no-arrow'>
                     <a
-                        class='nav-link dropdown-toggle'
+                        className='nav-link dropdown-toggle'
                         href='/'
                         id='userDropdown'
                     >
-                        <span class='mr-2 d-none d-lg-inline text-gray-600 small'>
-                            Jordan Walke
+                        <span className='mr-2 d-none d-lg-inline text-gray-600 small'>
+                            Sr. Deadpool
                         </span>
                         <img
-                            class='img-profile rounded-circle'
-                            src='/images/jordan-walke.png'
+                            className='img-profile rounded-circle'
+                            src='/images/deadpool.jpg'
                             alt='Jordan Walke - Creador de React'
                             width='60'
                         />

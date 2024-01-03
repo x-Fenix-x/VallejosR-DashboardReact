@@ -1,18 +1,18 @@
 export const LastMoviesInDb = () => {
     return (
-        <div class='col-lg-6 mb-4'>
-            <div class='card shadow mb-4'>
-                <div class='card-header py-3'>
-                    <h5 class='m-0 font-weight-bold text-gray-800'>
+        <div className='col-lg-6 mb-4'>
+            <div className='card shadow mb-4'>
+                <div className='card-header py-3'>
+                    <h5 className='m-0 font-weight-bold text-gray-800'>
                         Last movie in Data Base
                     </h5>
                 </div>
-                <div class='card-body'>
-                    <div class='text-center'>
+                <div className='card-body'>
+                    <div className='text-center'>
                         <img
-                            class='img-fluid px-3 px-sm-4 mt-3 mb-4'
+                            className='img-fluid px-3 px-sm-4 mt-3 mb-4'
                             style={{ width: '40rem' }}
-                            src='/images/mandalorian.jpg'
+                            src='/images/rym.jpg'
                             alt=' Star Wars - Mandalorian '
                         />
                     </div>
@@ -26,7 +26,7 @@ export const LastMoviesInDb = () => {
                         aperiam voluptatum?
                     </p>
                     <a
-                        class='btn btn-danger'
+                        className='btn btn-danger'
                         target='_blank'
                         rel='nofollow'
                         href='/'
