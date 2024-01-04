@@ -1,24 +1,15 @@
-import { useState } from 'react'
-
-import './App.css'
-import { SideBar } from './components/SideBar'
-import { ContentWrapper } from './components/ContentWrapper'
+import './App.css';
+import { SideBar } from './components/SideBar';
+import { ContentWrapper } from './components/ContentWrapper';
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <div id='wrapper'>
+            <SideBar />
 
-  return (
-    <div id="wrapper">
-
-		
-	<SideBar/>
-
-	
-	<ContentWrapper/>
-	
-
-	</div>
-  )
+            <ContentWrapper />
+        </div>
+    );
 }
 
-export default App
+export default App;

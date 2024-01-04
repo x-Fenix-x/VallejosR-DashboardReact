@@ -20,5 +20,4 @@ export const ContentRowTop = () => {
             <TableMovies />
         </div>
     );
-    44;
 };

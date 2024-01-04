@@ -1,7 +1,7 @@
 import { Card, Table } from 'react-bootstrap';
-import { TableItem } from './TableItem';
+import { TableItem } from '../components/TableItem';
 
-export const TableMovies = () => {
+export const ListMovies = () => {
     const movies = [
         {
             id: crypto.randomUUID(),
