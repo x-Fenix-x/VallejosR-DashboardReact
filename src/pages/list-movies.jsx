@@ -5,8 +5,10 @@ import { Loading } from '../components/Loading';
 import { Paginator } from '../components/Paginator';
 import { FormSearch } from '../components/FormSearch';
 import { FormMovie } from '../components/FormMovie';
+import { showMessageSuccess } from '../components/Toast';
 
 export const ListMovies = () => {
+    const [movie, setMovie] = useState(null);
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState([true]);
     const [pagination, setPagination] = useState();
@@ -21,7 +23,6 @@ export const ListMovies = () => {
             setLoading(false);
             setMovies(result.data);
             setPagination(result.meta);
-            console.log(result.meta);
         } catch (error) {
             console.log(error);
         }
@@ -35,6 +36,42 @@ export const ListMovies = () => {
         getMovies(endpoint);
     };
 
+    const handleAddMovie = async (data) => {
+        try {
+            let response = await fetch(
+                `${import.meta.env.VITE_APP_API_URL}/movies`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                }
+            );
+            const result = await response.json();
+
+            showMessageSuccess(result.message);
+            getMovies();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleEditMovie = async (id) => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_APP_API_URL}/movies/${id}`
+            );
+            const result = await response.json();
+
+            result.ok && setMovie(result.data);
+
+            console.log(movie);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return loading ? (
         <Loading />
     ) : (
@@ -42,10 +79,16 @@ export const ListMovies = () => {
             <Col sm={12} md={6} lg={4}>
                 <Card>
                     <Card.Header>
-                        <Card.Title>Agregar Película</Card.Title>
+                        <Card.Title>
+                            {movie ? 'Editar' : 'Agregar'} película
+                        </Card.Title>
                     </Card.Header>
                     <Card.Body>
-                        <FormMovie />
+                        <FormMovie
+                            handleAddMovie={handleAddMovie}
+                            movie={movie}
+                            setMovie={setMovie}
+                        />
                     </Card.Body>
                 </Card>
             </Col>
@@ -71,25 +114,13 @@ export const ListMovies = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {movies.map(
-                                    ({
-                                        id,
-                                        title,
-                                        length,
-                                        awards,
-                                        rating,
-                                        genre,
-                                    }) => (
-                                        <TableItem
-                                            key={id}
-                                            title={title}
-                                            length={length}
-                                            awards={awards}
-                                            rating={rating}
-                                            genre={genre}
-                                        />
-                                    )
-                                )}
+                                {movies.map((movie) => (
+                                    <TableItem
+                                        key={movie.id}
+                                        movie={movie}
+                                        handleEditMovie={handleEditMovie}
+                                    />
+                                ))}
                             </tbody>
                         </Table>
                     </Card.Body>
