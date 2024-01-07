@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 export const TableItem = ({
     movie: { id, title, length, rating, genre, awards },
     handleEditMovie,
+    handleDeleteMovie,
 }) => {
     return (
         <tr>
@@ -19,7 +20,10 @@ export const TableItem = ({
                     >
                         <i className='fas fa-pencil-alt'></i>
                     </button>
-                    <button className='btn btn-sm btn-outline-danger'>
+                    <button
+                        className='btn btn-sm btn-outline-danger'
+                        onClick={() => handleDeleteMovie(id)}
+                    >
                         <i className='fas fa-trash-alt'></i>
                     </button>
                 </div>
@@ -31,6 +35,7 @@ export const TableItem = ({
 TableItem.propTypes = {
     movie: PropTypes.object,
     handleEditMovie: PropTypes.func,
+    handleDeleteMovie: PropTypes.func,
 };
 
 TableItem.defaultProps = {

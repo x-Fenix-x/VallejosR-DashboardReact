@@ -6,6 +6,7 @@ import { Paginator } from '../components/Paginator';
 import { FormSearch } from '../components/FormSearch';
 import { FormMovie } from '../components/FormMovie';
 import { showMessageSuccess } from '../components/Toast';
+import Swal from 'sweetalert2';
 
 export const ListMovies = () => {
     const [movie, setMovie] = useState(null);
@@ -72,6 +73,62 @@ export const ListMovies = () => {
         }
     };
 
+    const handleUpdateMovie = async (id, data) => {
+        try {
+            const response = await fetch(
+                `${import.meta.env.VITE_APP_API_URL}/movies/${id}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                }
+            );
+            const result = await response.json();
+
+            setMovies(
+                movies.map((movie) =>
+                    movie.id === result.data.id ? result.data : movie
+                )
+            );
+            setMovie(null);
+            showMessageSuccess(result.message);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleDeleteMovie = async (id, movie) => {
+        Swal.fire({
+            title: `Esta por eliminar la película: <strong>${movie.title}</strong>. ¿Desea continuar?`,
+            showDenyButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            confirmButtonColor: '#3085d6',
+            denyButtonText: `Cancelar`,
+            denyButtonColor: '#dc3545',
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(
+                        `${import.meta.env.VITE_APP_API_URL}/movies/${id}`,
+                        {
+                            method: 'DELETE',
+                        }
+                    );
+                    const result = await response.json();
+
+                    if (result.ok) {
+                        showMessageSuccess(result.message);
+                        setMovies(movies.filter((movie) => movie.id !== id));
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        });
+    };
+
     return loading ? (
         <Loading />
     ) : (
@@ -87,6 +144,7 @@ export const ListMovies = () => {
                         <FormMovie
                             handleAddMovie={handleAddMovie}
                             movie={movie}
+                            handleUpdateMovie={handleUpdateMovie}
                             setMovie={setMovie}
                         />
                     </Card.Body>
@@ -119,7 +177,8 @@ export const ListMovies = () => {
                                         key={movie.id}
                                         movie={movie}
                                         handleEditMovie={handleEditMovie}
-                                    />
+                                        handleDeleteMovie={(id) => handleDeleteMovie(id, movie)}
+                                        />
                                 ))}
                             </tbody>
                         </Table>
