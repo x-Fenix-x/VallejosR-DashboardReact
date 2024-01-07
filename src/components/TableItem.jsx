@@ -1,19 +1,12 @@
 import PropTypes from 'prop-types';
 
-export const TableItem = ({ title, length, rating, genres, awards }) => {
+export const TableItem = ({ title, length, rating, genre, awards }) => {
     return (
         <tr>
             <td>{title}</td>
-            <td>{length} Min</td>
+            <td>{length ? length + ' Min' : 'Sin datos'}</td>
             <td>{rating}</td>
-            <td>
-                <ul>
-                    {Array.isArray(genres) &&
-                        genres.map((genre, index) => (
-                            <li key={index}>{genre}</li>
-                        ))}
-                </ul>
-            </td>
+            <td>{genre? genre.name : 'Sin género'}</td>
             <td>{awards}</td>
         </tr>
     );
@@ -22,11 +15,11 @@ export const TableItem = ({ title, length, rating, genres, awards }) => {
 TableItem.propTypes = {
     title: PropTypes.string,
     length: PropTypes.number,
-    rating: PropTypes.number,
-    genres: PropTypes.array,
+    rating: PropTypes.string,
+    genre: PropTypes.object,
     awards: PropTypes.number,
 };
 
 TableItem.defaultProps = {
-    genres: ['Sin género asignado'],
+    genre: 'Sin género',
 };
