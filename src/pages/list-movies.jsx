@@ -133,8 +133,8 @@ export const ListMovies = () => {
         <Loading />
     ) : (
         <Row>
-            <Col sm={12} md={6} lg={4}>
-                <Card>
+            <Col sm={12} lg={4}>
+                <Card className='mb-3'>
                     <Card.Header>
                         <Card.Title>
                             {movie ? 'Editar' : 'Agregar'} película
@@ -150,7 +150,7 @@ export const ListMovies = () => {
                     </Card.Body>
                 </Card>
             </Col>
-            <Col sm={12} md={6} lg={8}>
+            <Col sm={12} lg={8}>
                 <Card className='shadow mb-5'>
                     <Card.Body>
                         <div className='d-flex flex-column flex-md-row justify-content-between'>
